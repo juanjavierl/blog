@@ -4,3 +4,9 @@ from django.shortcuts import render
 def inicio(request):
 
     return render(request, 'base.html')
+
+
+
+def login(request):
+    
+    return render(request, 'login.html')
