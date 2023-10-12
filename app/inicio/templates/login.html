@@ -4,4 +4,19 @@
 
 {% block contenido %}
     <strong>FORMULARIO LOGIN</strong>
+
+   <!--<form action="" method="post">
+        <label for="">Usuario:</label>
+        <input type="text" name="usuario" id="">
+        <button>Enviar</button>
+    </form>--> 
+
+    <form action="/login" method="post">
+        {% csrf_token %}
+        {{formulario}}
+        <br>
+        <button>Enviar</button>
+    </form>
+
+
 {% endblock %}

@@ -4,4 +4,6 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
 
     path('login/', views.login, name='login'),
+
+    path('detalleUser/', views.detalleUser, name='detalleUser'),
 ]
