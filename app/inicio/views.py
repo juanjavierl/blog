@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import *
 # Create your views here.
@@ -9,9 +9,15 @@ def inicio(request):
 
 
 def login(request):
+    #print("Tipo de la peticion: ", request.method)
     if request.method == 'POST':
-        print(request.POST['nombre'])
-    formulario = NameForm()
+        formulario = NameForm(data = request.POST)
+        if formulario.is_valid():
+            return redirect("/logueado/")
+
+        #print(request.POST['nombre'])
+    else:
+        formulario = NameForm()
     return render(request, 'login.html',{'formulario':formulario})
 
 

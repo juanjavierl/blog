@@ -11,9 +11,9 @@
         <button>Enviar</button>
     </form>--> 
 
-    <form action="/login" method="post">
+    <form action="/login/" method="post">
         {% csrf_token %}
-        {{formulario}}
+        {{formulario.as_p}}
         <br>
         <button>Enviar</button>
     </form>
