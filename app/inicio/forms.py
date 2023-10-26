@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Categoria
+
 class NameForm(forms.Form):
     nombre = forms.CharField(label= "Ingrese su Nombre",help_text="Informacion requerida *",widget=forms.TextInput(attrs={
         'placeholder':'Escriba su nombre',
@@ -31,5 +33,13 @@ tipo_persona = (
 
 class NameForm(forms.Form):
     nombre = forms.CharField(label= "Nombre",help_text="Informacion requerida *")
-    mensaje = form.TextField(label="Mensaje", help_text="Escriba su mensaje")
+    mensaje = forms.CharField(label="Mensaje", help_text="Escriba su mensaje")
     Email = forms.EmailField(label= "Ingrse su correo", required = True)
+
+
+class CategoriaForm(forms.ModelForm):
+
+    class Meta:
+        model = Categoria
+
+        exclude=('estado',)

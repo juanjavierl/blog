@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from .models import *
 from .forms import *
 # Create your views here.
 def inicio(request):
@@ -26,3 +27,14 @@ def detalleUser(request):
 
     
     return render(request, 'detalleUser.html',{'nombre':nombre})
+
+
+def crear_categoria(request):
+    if request.method == 'POST':
+        formulario = CategoriaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("/ver_categorias/")
+    else:
+        formulario = CategoriaForm()
+    return render(request,'crear_categoria.html',{'formulario':formulario})
