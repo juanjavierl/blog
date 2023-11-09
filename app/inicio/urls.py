@@ -8,4 +8,7 @@ urlpatterns = [
     path('detalleUser/', views.detalleUser, name='detalleUser'),
 
     path('crear_categoria/', views.crear_categoria, name='crear_categoria'),
+    path('ver_categorias/',views.ver_categorias, name='ver_categorias'),
+
+    path('crear_producto/',views.crear_producto, name='crear_producto'),
 ]

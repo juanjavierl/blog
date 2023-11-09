@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} PRODUCTOS {% endblock %}
+
+{% block contenido %}
+    <strong>Crear Productos</strong>
+
+    <form action="/crear_producto/" method="post" enctype="multipart/formdata">
+        {% csrf_token %}<!--variable de seguridad-->
+        {{formulario.as_p}}
+        <br>
+        <button>Registrar</button>
+        <button type="reset">Cancelar</button>
+    </form>
+
+
+{% endblock %}

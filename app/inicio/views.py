@@ -38,3 +38,19 @@ def crear_categoria(request):
     else:
         formulario = CategoriaForm()
     return render(request,'crear_categoria.html',{'formulario':formulario})
+
+def ver_categorias(request):
+    categorias = Categoria.objects.all()
+
+    return render(request, 'ver_categorias.html',{'categorias':categorias})
+
+
+def crear_producto(request):
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("/crear_producto/")
+    else:
+        formulario = ProductoForm()
+    return render(request, 'crear_producto.html',{'formulario':formulario})
