@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %} PRODUCTOS {% endblock %}
 
 {% block contenido %}
-    <strong>Crear Productos</strong>
+    <div class="formulario">
+        <strong>Crear Productos</strong>
 
-    <form action="/crear_producto/" method="post" enctype="multipart/form-data">
-        {% csrf_token %}<!--variable de seguridad-->
-        {{formulario.as_p}}
-        <br>
-        <button type="submit">Registrar</button>
-        <button type="reset">Cancelar</button>
-    </form>
+        <form action="/crear_producto/" method="post" enctype="multipart/form-data" class="form-inline" role="form">
+            {% csrf_token %}<!--variable de seguridad-->
+        <div class="mb-3">{{ formulario }}</div>
+            
+            
+            <button type="submit">Registrar</button>
+            <button type="reset">Cancelar</button>
+        </form>
+    </div>
 
 
 {% endblock %}
