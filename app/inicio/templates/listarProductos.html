@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Productos {% endblock %}
+
+{% block contenido %}
+
+    <strong>Lista de Productos</strong>
+    
+    <TABLE BORDER="1">
+        <TR>
+            <TH>ID</TH>
+            <TH>NOMBRE</TH>
+            <TH>PRECIO</TH>
+            <TH>STOCK</TH>
+            <TH>CATEGORIA</TH>
+            <th>Imagen</th>
+            <th>Fecha de Registro</th>
+            <th>Fecha de Modificacion</th>
+            <TH>ACCIONES</TH>
+        </TR>
+        {% for p in productos %}
+            <TR>
+                <TD>{{p.id}}</TD>
+                <td>{{p.nombre}}</td>
+                <td>{{p.precio}}</td>
+                <td>{{p.stock}}</td>
+                <td>{{p.categoria}}</td>
+                <td><img src="/media/{{p.imagen}}" alt="" srcset=""></td>
+            </TR>
+        {% empty %}
+            <tr>
+                <td>No hay Registros</td>
+            </tr>
+        {% endfor %}
+
+    </TABLE>
+{% endblock %}

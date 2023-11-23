@@ -20,7 +20,7 @@ class Producto(models.Model):
     precio = models.FloatField("Precio", blank=True, null=True, help_text="Campo Opcional")
     stock = models.IntegerField("Stock")
     categoria = models.ForeignKey(Categoria, on_delete = models.CASCADE)
-    imagen = models.ImageField("Imagen", blank=True, null=True, upload_to='img_productos')
+    imagen = models.ImageField("Imagen", upload_to='img_productos')
 
     estado = models.BooleanField(default = True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)

@@ -54,3 +54,11 @@ def crear_producto(request):
     else:
         formulario = ProductoForm()
     return render(request, 'crear_producto.html',{'formulario':formulario})
+
+
+def listarProductos(request):
+    productos = Producto.objects.all()
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'listarProductos.html', datos)
