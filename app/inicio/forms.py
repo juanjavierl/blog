@@ -47,7 +47,7 @@ class CategoriaForm(forms.ModelForm):
 
 
 class ProductoForm(forms.ModelForm):
-    """ nombre = forms.CharField(
+    nombre = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control','placeholder':'Nombre del Producto'
@@ -69,13 +69,7 @@ class ProductoForm(forms.ModelForm):
                 }
         )
     )
-    categoria = forms.ChoiceField(
-        widget=forms.NumberInput(
-            attrs={
-                'class': 'form-select'
-                }
-        )
-    ) """
+    
     class Meta:
         model = Producto
 

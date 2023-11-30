@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block title %} PRODUCTOS {% endblock %}
+
+{% load crispy_forms_tags %}
 
 {% block contenido %}
     <div class="formulario">
@@ -11,8 +12,8 @@
         <div class="mb-3">{{ formulario }}</div>
             
             
-            <button type="submit">Registrar</button>
-            <button type="reset">Cancelar</button>
+            <button type="submit" class="btn btn-success">Registrar</button>
+            <button type="reset" class="btn btn-danger">Cancelar</button>
         </form>
     </div>
 
