@@ -12,7 +12,7 @@ def inicio(request):
 
 
 
-def login(request):
+def contacto(request):
     #print("Tipo de la peticion: ", request.method)
     if request.method == 'POST':
         formulario = NameForm(data = request.POST)
@@ -22,7 +22,7 @@ def login(request):
         #print(request.POST['nombre'])
     else:
         formulario = NameForm()
-    return render(request, 'login.html',{'formulario':formulario})
+    return render(request, 'contacto.html',{'formulario':formulario})
 
 
 def detalleUser(request):
