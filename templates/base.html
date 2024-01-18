@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
+    {% if request.user.is_authenticated %}<!--si es verdad me muestra todo el menu-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -73,9 +73,10 @@
             </form>
             </div>
         </div>
-        </nav>
+    </nav>
+    {% endif %}
 
-          <h2>Contenido del bloque</h2>
+          <h2>Contenido del bloque  &&   <a href="/login">Iniciar Session</a> </h2>
     <!--Contenido que se cambiara-->
     
         <div class="contenido">

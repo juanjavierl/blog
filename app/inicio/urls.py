@@ -15,4 +15,6 @@ urlpatterns = [
     path('listar_productos/',views.listarProductos, name='listar_productos'),
 
     path('register/', views.register, name='register'),
+
+    path('login/', views.login, name='login'),
 ]

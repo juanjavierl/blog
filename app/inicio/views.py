@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .forms import *
@@ -81,3 +81,24 @@ def register(request):
     contexto = {'form':form}
     return render(request,'register.html',contexto)
 
+def login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username,password=password)
+            print(user)
+            if user is not None:
+                print("TE AUTENTICASTE EN EL SISTEMA")
+                return redirect("/")
+            messages.error(request,'Error, Contactese con el administrador para resolver el problema gracias.')
+            return redirect('/login')
+        else:
+            messages.error(request,'Error, datos incorrectos intente nuevamente gracias.')
+        return redirect('/login')
+    else:
+        print("es una peticion GET")
+        form = AuthenticationForm()
+    contexto = {'form':form}
+    return render(request, 'login.html', contexto)
