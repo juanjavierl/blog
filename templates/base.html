@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Inicio {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    {% if request.user.is_authenticated %}<!--si es verdad me muestra todo el menu-->
+   <!--si es verdad me muestra todo el menu-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -74,9 +74,8 @@
             </div>
         </div>
     </nav>
-    {% endif %}
 
-          <h2>Contenido del bloque  &&   <a href="/login">Iniciar Session</a> </h2>
+          <h2>Contenido del bloque</h2>
     <!--Contenido que se cambiara-->
     
         <div class="contenido">
