@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
+
+import datetime
 # Create your views here.
 
 def loguearse(request):
@@ -15,7 +17,6 @@ def loguearse(request):
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username,password=password)
-            print(user)
             if user is not None:
                 print("TE AUTENTICASTE EN EL SISTEMA")
                 login(request, user)
@@ -92,12 +93,13 @@ def crear_producto(request):
 @login_required(login_url="/")
 def listarProductos(request):
     productos = Producto.objects.all()
-    usuario = request.user.first_name.upper() +" "+ request.user.last_name
-    print(usuario)
-    datos = {
-        'productos':productos
-    }
-    return render(request, 'listarProductos.html', datos)
+    usuario = request.user.first_name +" "+ request.user.last_name
+    contexto = {
+        'productos':productos,
+        'nombre':usuario.title(),
+        'fecha': datetime.datetime.now()
+        }
+    return render(request, 'listarProductos.html', contexto)
 
 
 def register(request):
