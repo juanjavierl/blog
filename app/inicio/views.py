@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate,login as do_login
+from django.contrib.auth import authenticate,login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
 # Create your views here.
-def login(request):
+
+def loguearse(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -16,7 +18,7 @@ def login(request):
             print(user)
             if user is not None:
                 print("TE AUTENTICASTE EN EL SISTEMA")
-                do_login(request, user)
+                login(request, user)
                 return redirect("/inicio")
             else:
                 messages.error(request,'Error, Contactese con el administrador para resolver el problema gracias.')
@@ -25,14 +27,20 @@ def login(request):
             messages.error(request,'Error, datos incorrectos intente nuevamente gracias.')
         return redirect('/login')
     else:
-        print("es una peticion GET")
         form = AuthenticationForm()
-    contexto = {'form':form}
+        contexto = {'form':form}
     return render(request, 'login.html', contexto)
 
+
+@login_required(login_url="/")
 def inicio(request):
 
     return render(request,'base.html')
+
+def cerrarSesion(request):
+    logout(request)
+
+    return redirect("/")
 
 def contacto(request):
     #print("Tipo de la peticion: ", request.method)
@@ -69,7 +77,6 @@ def ver_categorias(request):
 
     return render(request, 'ver_categorias.html',{'categorias':categorias})
 
-
 def crear_producto(request):
     if request.method == 'POST':
         formulario = ProductoForm(request.POST, request.FILES)
@@ -81,8 +88,12 @@ def crear_producto(request):
     return render(request, 'crear_producto.html',{'formulario':formulario})
 
 
+
+@login_required(login_url="/")
 def listarProductos(request):
     productos = Producto.objects.all()
+    usuario = request.user.first_name.upper() +" "+ request.user.last_name
+    print(usuario)
     datos = {
         'productos':productos
     }

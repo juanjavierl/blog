@@ -40,4 +40,5 @@
         {% endfor %}
 
     </TABLE>
+    <strong>Usario: {{request.user.first_name|title}} {{request.user.last_name|title}}</strong>
 {% endblock %}

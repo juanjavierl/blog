@@ -31,7 +31,7 @@
                         <li><a class="dropdown-item" href="/register">Registrarse</a></li>
                         <li><a class="dropdown-item" href="#">Cambiar de Contraseña</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" href="/cerrarSesion">Cerrar Sesion</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -75,7 +75,7 @@
         </div>
     </nav>
 
-          <h2>Contenido del bloque</h2>
+          <h2>Bienvenido: {{request.user.first_name|title}} {{request.user.last_name|title}}</h2>
     <!--Contenido que se cambiara-->
     
         <div class="contenido">
@@ -85,6 +85,6 @@
         </div>
 
 
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
