@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
+
 from .models import *
 from .forms import *
 
@@ -115,3 +117,23 @@ def register(request):
     
     contexto = {'form':form}
     return render(request,'register.html',contexto)
+
+
+def buscar_por_letra(request):
+    productos = []
+    if request.method == 'POST':
+        letra = request.POST["letra"]
+        """ select *
+        from Productos
+        where nombre like = "letra" and precio>1500 """
+
+        criterio=(
+            Q(nombre__startswith=letra) |
+            Q(precio__startswith=letra) |
+            Q(id__startswith=letra)
+        )
+        productos = Producto.objects.filter(criterio).distinct()
+
+    return render(request,"buscar_por_letra.html",{'productos':productos})
+
+

@@ -17,4 +17,6 @@ urlpatterns = [
     path('listar_productos/',views.listarProductos, name='listar_productos'),
 
     path('register/', views.register, name='register'),
+
+    path('buscar/', views.buscar_por_letra, name='buscar_por_letra'),
 ]
