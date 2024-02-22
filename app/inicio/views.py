@@ -57,7 +57,7 @@ def contacto(request):
 
 
 def detalleUser(request):
-    nombre = "administrador"
+    nombre = "ADMIN"
 
     
     return render(request, 'detalleUser.html',{'nombre':nombre})
@@ -113,5 +113,9 @@ def register(request):
     else:
         form = UserRegisterForm()
     
-    contexto = {'form':form}
+    contexto = {'form':form}    
     return render(request,'register.html',contexto)
+
+def vision_mision(request):
+    
+    return render(request, "vision_mision.html")

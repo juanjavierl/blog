@@ -29,7 +29,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/detalleUser">Mis Perfil</a></li>
                         <li><a class="dropdown-item" href="/register">Registrarse</a></li>
-                        <li><a class="dropdown-item" href="#">Cambiar de Contraseña</a></li>
+                        <li><a class="dropdown-item" href="">Cambiar de Contraseña</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/cerrarSesion">Cerrar Sesion</a></li>
                     </ul>
@@ -38,12 +38,9 @@
                 <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/contacto">Contacto</a>
+                <a class="nav-link active" aria-current="page" href="/contacto">Contacto</a>
                 </li>
-                
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/contacto">contacto</a>
-                </li>
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,7 +48,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/crear_categoria">Crear Nuevo</a></li>
-                        <li><a class="dropdown-item" href="#">Ver categorias</a></li>
+
+                        <li><a class="dropdown-item" href="/ver_categorias">ver categorias</a></li>
+                        
                     </ul>
                 </li>
 
@@ -86,5 +85,6 @@
 
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
 </body>
 </html>
