@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} Reportes {% endblock %}
+
+{% block contenido %}
+
+    <form action="/por_fechas/" method="post">
+        {% csrf_token %}
+        Ingrese una fecha: <input type="date" name="fecha" id="">
+
+        <button type="submit" class="btn btn-success">Buscar</button>
+        <button type="reset" class="btn btn-danger">Cancelar</button>
+    </form>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>Cliente</td>
+            <td>descuento</td>
+            <td>sub total</td>
+            <td>total compra</td>
+            <td>fecha creacion</td>
+        </tr>
+        {% for c in compras %}
+            <tr>
+                <td>{{c.id_cliente}}</td>
+                <td>{{c.descuento}}</td>
+                <td>{{c.sub_total}}</td>
+                <td>{{c.total_compra}}</td>
+                <td>{{c.fecha_creacion}}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <strong>No hay registros</strong>
+            </tr>
+        {%endfor%}
+    </table>
+    
+
+{%  endblock %}

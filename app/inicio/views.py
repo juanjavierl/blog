@@ -9,7 +9,7 @@ from django.db.models import Q
 from .models import *
 from .forms import *
 
-import datetime
+from datetime import date, datetime
 # Create your views here.
 
 def loguearse(request):
@@ -135,5 +135,12 @@ def buscar_por_letra(request):
         productos = Producto.objects.filter(criterio).distinct()
 
     return render(request,"buscar_por_letra.html",{'productos':productos})
-
-
+from datetime import datetime
+def por_fechas(request):
+    compras = []
+    if request.method == 'POST':
+        fecha = request.POST["fecha"]
+        print("FEchaaaa",datetime.strptime(fecha,'%Y-%m-%d'))
+        compras = Compra.objects.filter(fecha_creacion = datetime.strptime(fecha,'%Y-%m-%d'))
+        print(compras)
+    return render(request, "por_fechas.html",{"compras":compras})
