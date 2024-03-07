@@ -20,5 +20,7 @@ urlpatterns = [
 
     path('buscar/', views.buscar_por_letra, name='buscar_por_letra'),
     
-    path("por_fechas/", views.por_fechas, name="por_fechas")
+    path("por_fechas/", views.por_fechas, name="por_fechas"),
+
+    path('consultas/', views.consultas, name='consultas'),
 ]

@@ -66,6 +66,8 @@ class Compra(models.Model):
         verbose_name = 'Compra'
         verbose_name_plural = 'Compras'
 
+    def __str__(self):
+        return f"la fecha: {self.id_cliente.nombre}"
 
 
 
@@ -96,24 +98,19 @@ class Orden(models.Model):
         verbose_name_plural = 'Ordenes'
 
 
-class DetalleCompra(models.Model):
-    fecha = models.DateField("Fecha", default=date.today)
-    cantidad = models.IntegerField("Cantidad")
-    sub_total = models.FloatField("Sub Total")
-    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    id_orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
-    fecha_mod = models.DateTimeField(auto_now = True)
-    
-    class Meta:
-        verbose_name = 'Detalle de Compra'
-        verbose_name_plural = 'Detalles de Compra'
+
 
 class FacturaCompra(models.Model):
-        fecha = models.DateField("Fecha", default=date.today)
         cantidad = models.IntegerField("Cantidad")
         sub_total = models.FloatField("Sub Total")
         id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
         id_compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
         fecha_creacion = models.DateTimeField(auto_now_add=True)
         fecha_mod = models.DateTimeField(auto_now = True)
+
+        class Meta:
+            verbose_name = 'FacturaCompra'
+            verbose_name_plural = 'FacturaCompras'
+
+        def __str__(self):
+            return f"Producto: {self.id_producto.nombre}"

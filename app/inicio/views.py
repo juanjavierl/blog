@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponse
 from django.db.models import Q
 
 from .models import *
@@ -140,7 +140,10 @@ def por_fechas(request):
     compras = []
     if request.method == 'POST':
         fecha = request.POST["fecha"]
-        print("FEchaaaa",datetime.strptime(fecha,'%Y-%m-%d'))
-        compras = Compra.objects.filter(fecha_creacion = datetime.strptime(fecha,'%Y-%m-%d'))
-        print(compras)
+        compras = Compra.objects.filter(fecha_creacion__date = fecha)
     return render(request, "por_fechas.html",{"compras":compras})
+
+from django.db.models import Max, Count, Min, Avg, Sum
+def consultas(request):
+    productos_de_la_compra = FacturaCompra.objects.filter(id_compra=2)
+    return HttpResponse(productos_de_la_compra)
