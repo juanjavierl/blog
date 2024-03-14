@@ -23,4 +23,6 @@ urlpatterns = [
     path("por_fechas/", views.por_fechas, name="por_fechas"),
 
     path('consultas/', views.consultas, name='consultas'),
+    path('editar_producto/<int:id_producto>/', views.editar_producto, name='editar_producto'),
+    path('eliminar_producto/<int:id_producto>/',views.eliminar_producto, name='eliminar_producto')
 ]

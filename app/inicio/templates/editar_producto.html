@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Editar Productos {% endblock %}
+
+{% block contenido %}
+    <div class="formulario">
+        <strong>Editar Productos - {{id_producto}}</strong>
+
+        <form action="/editar_producto/{{id_producto}}/" method="post" enctype="multipart/form-data" class="form-inline" role="form">
+            {% csrf_token %}<!--variable de seguridad-->
+        <div class="mb-3">{{ form }}</div>
+            <button type="submit" class="btn btn-success">Editar</button>
+            <button type="reset" class="btn btn-danger">Cancelar</button>
+        </form>
+    </div>
+
+{% endblock %}

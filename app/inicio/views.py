@@ -10,6 +10,7 @@ from .models import *
 from .forms import *
 
 from datetime import date, datetime
+from datetime import datetime
 # Create your views here.
 
 def loguearse(request):
@@ -98,8 +99,7 @@ def listarProductos(request):
     usuario = request.user.first_name +" "+ request.user.last_name
     contexto = {
         'productos':productos,
-        'nombre':usuario.title(),
-        'fecha': datetime.datetime.now()
+        'nombre':usuario.title()
         }
     return render(request, 'listarProductos.html', contexto)
 
@@ -135,7 +135,7 @@ def buscar_por_letra(request):
         productos = Producto.objects.filter(criterio).distinct()
 
     return render(request,"buscar_por_letra.html",{'productos':productos})
-from datetime import datetime
+
 def por_fechas(request):
     compras = []
     if request.method == 'POST':
@@ -147,3 +147,24 @@ from django.db.models import Max, Count, Min, Avg, Sum
 def consultas(request):
     productos_de_la_compra = FacturaCompra.objects.filter(id_compra=2)
     return HttpResponse(productos_de_la_compra)
+
+def editar_producto(request, id_producto):
+    producto = Producto.objects.get(id = id_producto)
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES,instance=producto)
+        print("Method POST")
+        if form.is_valid():
+            form.save()
+            return redirect('/listar_productos/')
+        #entonces editamos el registro
+    else:
+        #mostrados el formulario con los datos
+        form = ProductoForm(instance=producto)
+    return render(request,'editar_producto.html',{'form':form,'id_producto':producto.id})
+
+def eliminar_producto(request, id_producto):
+    producto = Producto.objects.get(id = id_producto)
+    producto.delete()
+    return redirect('/listar_productos/')
+
+

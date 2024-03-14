@@ -29,8 +29,8 @@
                 <td>hace: {{p.fecha_creacion|timesince}}</td>
                 <td>{{p.fecha_mod|date:"d/m/Y"}}</td>
                 <td>
-                    <button class="btn btn-danger" title="Eliminar Producto"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-secondary" title="Editar Producto"><i class="fa-solid fa-pencil"></i></button>
+                    <a href="/eliminar_producto/{{p.id}}/" class="btn btn-danger" title="Eliminar Producto"><i class="fa-solid fa-trash"></i></a>
+                    <a  href="/editar_producto/{{p.id}}/" class="btn btn-secondary" title="Editar Producto"><i class="fa-solid fa-pencil"></i></a>
                 </td>
             </TR>
         {% empty %}
