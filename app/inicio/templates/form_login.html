@@ -1,0 +1,16 @@
+<div class="login">
+    <strong>LOGIN DE USUARIOS</strong>
+
+    <form action=" " method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br>
+        <button>Iniciar Session</button>
+    </form>
+
+    {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+    {% endif %}
+</div>

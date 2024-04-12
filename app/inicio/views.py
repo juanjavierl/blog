@@ -14,6 +14,10 @@ from datetime import datetime
 # Create your views here.
 
 def loguearse(request):
+    
+    return render(request, 'login.html')
+
+def form_login(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -33,8 +37,7 @@ def loguearse(request):
     else:
         form = AuthenticationForm()
         contexto = {'form':form}
-    return render(request, 'login.html', contexto)
-
+    return render(request, 'form_login.html', contexto)
 
 @login_required(login_url="/")
 def inicio(request):

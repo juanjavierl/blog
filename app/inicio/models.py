@@ -97,9 +97,6 @@ class Orden(models.Model):
         verbose_name = 'Orden'
         verbose_name_plural = 'Ordenes'
 
-
-
-
 class FacturaCompra(models.Model):
         cantidad = models.IntegerField("Cantidad")
         sub_total = models.FloatField("Sub Total")

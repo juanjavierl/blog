@@ -24,5 +24,7 @@ urlpatterns = [
 
     path('consultas/', views.consultas, name='consultas'),
     path('editar_producto/<int:id_producto>/', views.editar_producto, name='editar_producto'),
-    path('eliminar_producto/<int:id_producto>/',views.eliminar_producto, name='eliminar_producto')
+    path('eliminar_producto/<int:id_producto>/',views.eliminar_producto, name='eliminar_producto'),
+
+    path('form_login/', views.form_login, name='form_login'),
 ]
