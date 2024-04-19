@@ -5,7 +5,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.db.models import Q
-
+import json
+from django.http import JsonResponse, request
+from django.core.serializers import serialize
 from .models import *
 from .forms import *
 
@@ -39,7 +41,7 @@ def form_login(request):
         contexto = {'form':form}
     return render(request, 'form_login.html', contexto)
 
-@login_required(login_url="/")
+#@login_required(login_url="/")
 def inicio(request):
 
     return render(request,'base.html')
@@ -170,4 +172,21 @@ def eliminar_producto(request, id_producto):
     producto.delete()
     return redirect('/listar_productos/')
 
+def buscar_productos(request):
 
+    return render(request,'buscar_form.html')
+
+def get_producto(request):
+    texto = request.GET["texto"]
+    
+    criterio=(
+            Q(nombre__startswith=texto) |
+            Q(precio__startswith=texto) |
+            Q(id__startswith=texto)
+        )
+    productos = Producto.objects.filter(criterio).distinct()
+
+    serialized_data = serialize("json", productos)
+    serialized_data = json.loads(serialized_data)
+    
+    return HttpResponse(serialized_data)

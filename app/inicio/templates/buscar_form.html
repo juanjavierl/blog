@@ -1,0 +1,25 @@
+<form class="d-flex" role="search" action="/get_producto" method="POST" id="form_buscar">
+    <input class="form-control me-2"  id="texto" name="texto" type="search" placeholder="buscar producto" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<div id="resultados">
+
+</div>
+<script>
+    $(function(){
+                //para saber si esta cargando la libreria JQuery
+        //alert('cargo el formulario')
+        $("#form_buscar input").keypress(function(event){
+            $.ajax({
+                url:'/get_producto',
+                type:'GET',
+                data:$('#texto').serialize(),
+                success:function(resp){
+                    console.log(typeof(resp))
+                    $('#resultados').html(resp)
+                }
+            });
+        });
+    });
+</script>
+

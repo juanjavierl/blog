@@ -9,17 +9,17 @@
     <title>Document</title>
     <script src="{% static 'js/jquery-3.7.1.js' %}" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
     <style>
-        .menus nav a{
-            color: yellowgreen;
-        }
+        
     </style>
     <script>
 
         $(function(){//funcion anonima, para verificar si esta cargando el archi jquery
            
         });
-
+        //$('.menus nav a').css('color','red');
         function ver_formulario(urls){
+            /* $('.contenido').css('width',1000);
+            $(".contenido").hide(); */
             $.ajax({
                 // la URL para la petición
                 url : urls,
@@ -36,8 +36,9 @@
                 // la respuesta es pasada como argumento a la función
                 success : function(respuesta) {
                     //$(".contenido").html(respuesta).show(50000);
-                    var form = $(".contenido").html(respuesta);
-                    $(".contenido .login").show(3000);
+                    $(".contenido").html(respuesta)
+                    
+
                     
                 },
 

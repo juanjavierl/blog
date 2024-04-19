@@ -62,6 +62,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/crear_producto">Crear Nuevo</a></li>
                         <li><a class="dropdown-item" href="/listar_productos">Ver Productos</a></li>
+                        <li><a class="dropdown-item" onclick="buscar_producto('/buscar_productos')" href="#">Buscar Productos</a></li>
                     </ul>
                 </li>
 
@@ -87,14 +88,31 @@
 
           <h2>Bienvenido: {{request.user.first_name|title}} {{request.user.last_name|title}} </h2>
     <!--Contenido que se cambiara-->
-    
+    <div class="contenido_ajax"></div>
         <div class="contenido">
             {% block contenido %}
 
             {% endblock %}
         </div>
-
-
+    
+    
+    <script src="{% static 'js/jquery-3.7.1.js' %}" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script>
+        $(function(){
+            //para saber si esta cargando la libreria JQuery
+        });
+        //diccionario = {'uno':1,'dos':2}
+        function buscar_producto(urls){
+            $.ajax({
+                url:urls,
+                type:'GET',
+                success:function(respuesta){
+                    $('.contenido_ajax').html(respuesta);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
